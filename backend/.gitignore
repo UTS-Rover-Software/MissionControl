@@ -1,0 +1,17 @@
+# Python
+*.egg-info/
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+dist/
+build/
+
+# direnv
+.direnv/
+
+# IDE
+.vscode/
+.idea/
+*.swp

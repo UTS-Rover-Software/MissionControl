@@ -1,0 +1,25 @@
+[project]
+name = "uts-rs-mission-control"
+version = "0.1.0"
+description = "UTS RoverSoc Mission Control Backend"
+requires-python = ">=3.9"
+dependencies = [
+    "fastapi>=0.104.0",
+    "uvicorn>=0.24.0",
+    "websockets>=15.0.1",
+]
+
+
+[project.scripts]
+dev = "app.cli:dev"
+start = "app.cli:start"
+
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.4.2",
+    "ruff>=0.14.4",
+]
