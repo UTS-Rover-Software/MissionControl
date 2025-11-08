@@ -1,0 +1,33 @@
+stages:
+  - test
+
+variables:
+  UV_CACHE_DIR: "$CI_PROJECT_DIR/.uv-cache"
+
+cache:
+  key:
+    files:
+      - pyproject.toml
+      - uv.lock
+  paths:
+    - .uv-cache
+
+test:
+  stage: test
+  image: python:3.12
+  before_script:
+    - pip install uv
+    - uv sync --dev
+  script:
+    - uv run pytest app/tests/v1/ --tb=short --cov=app --cov-report=term --cov-report=xml
+  coverage: '/TOTAL.*\s+(\d+%)$/'
+  artifacts:
+    reports:
+      coverage_report:
+        coverage_format: cobertura
+        path: coverage.xml
+    expire_in: 1 week
+  only:
+    - merge_requests
+    - main
+    - develop
