@@ -1,42 +1,51 @@
-html, body, #root {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  background-color: #fe4328;
-  color: #FFFFFF;
-  text-align: center;
-}
-.container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-}
-.logo {
-  width: 180px;
-  height: 180px;
-  margin-bottom: 20px;
-  animation: spin 20s linear infinite;
+/* Rover Mission Control Styles */
+
+.flexlayout__layout {
+  background-color: var(--background) !important;
 }
 
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.flexlayout__tabset {
+  background-color: var(--card) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius) !important;
 }
-.title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin-bottom: 10px;
+
+.flexlayout__tab {
+  background-color: var(--card) !important;
+  color: var(--foreground) !important;
+  border: none !important;
+  border-radius: calc(var(--radius) - 2px) calc(var(--radius) - 2px) 0 0 !important;
 }
-.subtitle {
-  font-size: 1.2rem;
-  font-weight: 400;
-  opacity: 0.8;
-  margin-top: 10px;
+
+.flexlayout__tab.flexlayout__tab--selected {
+  background-color: var(--background) !important;
+  border-bottom: 2px solid var(--primary) !important;
+}
+
+.flexlayout__tab_button {
+  background-color: transparent !important;
+  color: var(--muted-foreground) !important;
+  border-radius: 4px !important;
+}
+
+.flexlayout__tab_button:hover {
+  background-color: var(--muted) !important;
+}
+
+.flexlayout__border {
+  background-color: var(--border) !important;
+}
+
+.flexlayout__splitter {
+  background-color: var(--border) !important;
+}
+
+.flexlayout__tabset_header {
+  background-color: var(--card) !important;
+  border-bottom: 1px solid var(--border) !important;
+  height: 36px !important;
+}
+
+.flexlayout__tabset_content {
+  background-color: var(--background) !important;
 }
