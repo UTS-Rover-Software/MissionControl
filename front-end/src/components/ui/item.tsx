@@ -10,7 +10,7 @@ function ItemGroup({ className, ...props }: React.ComponentProps<"div">) {
     <div
       role="list"
       data-slot="item-group"
-      className={cn("group/item-group flex flex-col", className)}
+      className={cn("item__group", "group/item-group flex flex-col", className)}
       {...props}
     />
   )
@@ -31,13 +31,13 @@ function ItemSeparator({
 }
 
 const itemVariants = cva(
-  "group/item flex items-center border border-transparent text-sm rounded-md transition-colors [a]:hover:bg-accent/50 [a]:transition-colors duration-100 flex-wrap outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]",
+  "group/item flex items-center text-sm rounded-md [a]:transition-colors duration-100 flex-wrap outline-none focus-visible:ring-[3px]",
   {
     variants: {
       variant: {
-        default: "bg-transparent",
-        outline: "border-border",
-        muted: "bg-muted/50",
+        default: "",
+        outline: "",
+        muted: "",
       },
       size: {
         default: "p-4 gap-4 ",
@@ -60,12 +60,14 @@ function Item({
 }: React.ComponentProps<"div"> &
   VariantProps<typeof itemVariants> & { asChild?: boolean }) {
   const Comp = asChild ? Slot : "div"
+  const variantClass = `item--${variant}` || 'item--default'
+  const sizeClass = size ? `item--${size}` : ''
   return (
     <Comp
       data-slot="item"
       data-variant={variant}
       data-size={size}
-      className={cn(itemVariants({ variant, size, className }))}
+      className={cn('item', variantClass, sizeClass, itemVariants({ variant, size, className }))}
       {...props}
     />
   )
@@ -76,10 +78,9 @@ const itemMediaVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-transparent",
-        icon: "size-8 border rounded-sm bg-muted [&_svg:not([class*='size-'])]:size-4",
-        image:
-          "size-10 rounded-sm overflow-hidden [&_img]:size-full [&_img]:object-cover",
+        default: "",
+        icon: "size-8 border rounded-sm [&_svg:not([class*='size-'])]:size-4",
+        image: "size-10 rounded-sm overflow-hidden [&_img]:size-full [&_img]:object-cover",
       },
     },
     defaultVariants: {
@@ -93,11 +94,12 @@ function ItemMedia({
   variant = "default",
   ...props
 }: React.ComponentProps<"div"> & VariantProps<typeof itemMediaVariants>) {
+  const mediaVariantClass = `item__media--${variant}` || 'item__media--default'
   return (
     <div
       data-slot="item-media"
       data-variant={variant}
-      className={cn(itemMediaVariants({ variant, className }))}
+      className={cn('item__media', mediaVariantClass, itemMediaVariants({ variant, className }))}
       {...props}
     />
   )
@@ -108,6 +110,7 @@ function ItemContent({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="item-content"
       className={cn(
+        "item__content",
         "flex flex-1 flex-col gap-1 [&+[data-slot=item-content]]:flex-none",
         className
       )}
@@ -121,6 +124,7 @@ function ItemTitle({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="item-title"
       className={cn(
+        "item__title",
         "flex w-fit items-center gap-2 text-sm leading-snug font-medium",
         className
       )}
@@ -134,8 +138,9 @@ function ItemDescription({ className, ...props }: React.ComponentProps<"p">) {
     <p
       data-slot="item-description"
       className={cn(
-        "text-muted-foreground line-clamp-2 text-sm leading-normal font-normal text-balance",
-        "[&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4",
+        "item__description",
+        "line-clamp-2 text-sm leading-normal font-normal text-balance",
+        "[&>a]:underline [&>a]:underline-offset-4",
         className
       )}
       {...props}

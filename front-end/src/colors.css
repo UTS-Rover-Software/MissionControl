@@ -1,0 +1,35 @@
+:root {
+  --rover-base-background-primary: #363E47;
+  --rover-base-background-secondary: #4D545C;
+  --rover-base-panel: #606975;
+  --rover-base-outline: #ACB3BD;
+  --rover-base-tab: #8B97A4;
+
+  /* ---------------------------
+     Brand / Text
+     --------------------------- */
+  --rover-brand: #0089D9;
+  --rover-text-primary: #FFFFFF;
+  --rover-text-secondary: #CCD0D7;
+  --rover-text-tagid: #7CCFFF;
+
+  /* ---------------------------
+     Status / Semantic colors
+     --------------------------- */
+  --rover-status-success: #22AD5C;
+  --rover-status-thermal: #4284F5;
+  --rover-status-unstable: #F27430;
+  --rover-status-error: #F23030;
+  --rover-status-selected: #66A8CF;
+  --rover-status-warning: #E1580E;
+
+  /* ---------------------------
+     Gradients / Overlays
+     --------------------------- */
+  --rover-gradient-2: #4D545C66; /* semi-transparent variant */
+
+  /* ---------------------------
+     System / Defaults
+     --------------------------- */
+  --default-systemgreen-light: #34C759;
+}

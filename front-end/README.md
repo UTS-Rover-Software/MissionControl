@@ -71,3 +71,10 @@ export default defineConfig([
   },
 ])
 ```
+## Viewing Components
+
+Component playbook is available at http://localhost:[your port]/components.
+
+It is still in progress but includes essential components like buttons, badges, tables, plus examples of their variants.
+
+Component-specific information can be found in the playbook.
