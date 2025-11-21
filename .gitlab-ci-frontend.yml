@@ -1,0 +1,19 @@
+frontend_test:
+  stage: test
+  image: node:18
+  before_script:
+    - npm ci
+  script:
+    - npm run lint
+    - npm test -- --coverage --watchAll=false
+  coverage: '/All files[^|]*\|[^|]*\s+([\d\.]+)/'
+  artifacts:
+    reports:
+      coverage_report:
+        coverage_format: cobertura
+        path: coverage/cobertura-coverage.xml
+    expire_in: 1 week
+  only:
+    - merge_requests
+    - main
+    - develop

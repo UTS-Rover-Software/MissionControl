@@ -1,6 +1,7 @@
 # Main CI pipeline - includes component-specific configurations
 include:
   - '.gitlab-ci-backend.yml'
+  - '.gitlab-ci-frontend.yml'
 
 stages:
   - test

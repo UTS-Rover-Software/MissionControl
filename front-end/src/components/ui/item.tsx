@@ -60,7 +60,7 @@ function Item({
 }: React.ComponentProps<"div"> &
   VariantProps<typeof itemVariants> & { asChild?: boolean }) {
   const Comp = asChild ? Slot : "div"
-  const variantClass = `item--${variant}` || 'item--default'
+   const variantClass = `item--${variant}`
   const sizeClass = size ? `item--${size}` : ''
   return (
     <Comp
@@ -94,7 +94,7 @@ function ItemMedia({
   variant = "default",
   ...props
 }: React.ComponentProps<"div"> & VariantProps<typeof itemMediaVariants>) {
-  const mediaVariantClass = `item__media--${variant}` || 'item__media--default'
+   const mediaVariantClass = `item__media--${variant}`
   return (
     <div
       data-slot="item-media"

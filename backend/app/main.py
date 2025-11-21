@@ -14,6 +14,7 @@ from routers.v1.data import router as data_router
 from routers.v1.config import router as config_router
 from routers.v1.tasks import router as tasks_router
 from routers.v1.system import router as system_router
+from database import init_db
 
 cors_origins = os.getenv("CORS_ORIGINS", "http://localhost:3000").split(",")
 
@@ -33,6 +34,11 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+@app.on_event("startup")
+async def startup_event():
+    await init_db()
 
 
 # Include API v1 routers

@@ -20,10 +20,8 @@ export const presets: Record<string, IJsonModel> = {
           type: 'column',
           weight: 50,
           children: [
-            { type: 'tabset', weight: 25, children: [{ type: 'tab', name: 'Tasks Widget', component: 'TasksWidget' }] },
-            { type: 'tabset', weight: 25, children: [{ type: 'tab', name: 'Task Graph', component: 'TaskGraph' }] },
-            { type: 'tabset', weight: 25, children: [{ type: 'tab', name: 'Robot Arm', component: 'RobotArm' }] },
-            { type: 'tabset', weight: 25, children: [{ type: 'tab', name: 'Mini Map', component: 'MiniMap' }] }
+            { type: 'tabset', weight: 50, children: [{ type: 'tab', name: 'Nav2 Target Queue', component: 'Nav2TargetQueue' }] },
+            { type: 'tabset', weight: 50, children: [{ type: 'tab', name: '2D Aerial Map Slam', component: 'AerialMapSlam' }] }
           ]
         }
       ]
@@ -55,7 +53,7 @@ export const presets: Record<string, IJsonModel> = {
       ]
     }
   },
-  'RFID + Image Quality': {
+  'Science': {
     global: { tabEnableClose: true },
     borders: [],
     layout: {
@@ -66,23 +64,22 @@ export const presets: Record<string, IJsonModel> = {
           type: 'column',
           weight: 50,
           children: [
-            { type: 'tabset', weight: 33, children: [{ type: 'tab', name: 'RFID Scanner', component: 'RFIDScanner' }] },
-            { type: 'tabset', weight: 33, children: [{ type: 'tab', name: 'Image Quality Control', component: 'ImageQualityControl' }] },
-            { type: 'tabset', weight: 34, children: [{ type: 'tab', name: 'Obsbots Camera Control', component: 'ObsbotsCameraControl' }] }
+            { type: 'tabset', weight: 50, children: [{ type: 'tab', name: 'Science Widget', component: 'ScienceWidget' }] },
+            { type: 'tabset', weight: 50, children: [{ type: 'tab', name: 'Camera Feed', component: 'CameraFeed' }] }
           ]
         },
         {
           type: 'column',
           weight: 50,
           children: [
-            { type: 'tabset', weight: 50, children: [{ type: 'tab', name: 'System Controls', component: 'SystemStatus' }] },
-            { type: 'tabset', weight: 50, children: [{ type: 'tab', name: 'RFID History', component: 'RFIDHistory' }] }
+            { type: 'tabset', weight: 50, children: [{ type: 'tab', name: 'Rosout Console', component: 'RosoutConsole' }] },
+            { type: 'tabset', weight: 50, children: [{ type: 'tab', name: 'Machine Usage Readonly', component: 'MachineUsageReadonly' }] }
           ]
         }
       ]
     }
   },
-  'Network + Camera + Light Control': {
+  'Autonomous': {
     global: { tabEnableClose: true },
     borders: [],
     layout: {
@@ -93,17 +90,16 @@ export const presets: Record<string, IJsonModel> = {
           type: 'column',
           weight: 50,
           children: [
-            { type: 'tabset', weight: 50, children: [{ type: 'tab', name: 'Camera Feed', component: 'CameraFeed' }] },
-            { type: 'tabset', weight: 50, children: [{ type: 'tab', name: 'Network Panel', component: 'NetworkPanel' }] }
+            { type: 'tabset', weight: 50, children: [{ type: 'tab', name: 'Nav2 Target Queue', component: 'Nav2TargetQueue' }] },
+            { type: 'tabset', weight: 50, children: [{ type: 'tab', name: '2D Aerial Map Slam', component: 'AerialMapSlam' }] }
           ]
         },
         {
           type: 'column',
           weight: 50,
           children: [
-            { type: 'tabset', weight: 33, children: [{ type: 'tab', name: 'Nearby Networks', component: 'NearbyNetworks' }] },
-            { type: 'tabset', weight: 33, children: [{ type: 'tab', name: 'Link Speed Panel', component: 'LinkSpeedPanel' }] },
-            { type: 'tabset', weight: 34, children: [{ type: 'tab', name: 'Light Control', component: 'LightControl' }] }
+            { type: 'tabset', weight: 50, children: [{ type: 'tab', name: 'Point Cloud Map', component: 'PointCloudMap' }] },
+            { type: 'tabset', weight: 50, children: [{ type: 'tab', name: 'RVIZ', component: 'RVIZ' }] }
           ]
         }
       ]
@@ -120,17 +116,15 @@ export const presets: Record<string, IJsonModel> = {
           type: 'column',
           weight: 50,
           children: [
-            { type: 'tabset', weight: 100, children: [{ type: 'tab', name: 'Mini Map', component: 'MiniMap' }] }
+            { type: 'tabset', weight: 100, children: [{ type: 'tab', name: '2D Aerial Map Slam', component: 'AerialMapSlam' }] }
           ]
         },
         {
           type: 'column',
           weight: 50,
           children: [
-            { type: 'tabset', weight: 25, children: [{ type: 'tab', name: 'Log Console', component: 'LogConsole' }] },
-            { type: 'tabset', weight: 25, children: [{ type: 'tab', name: 'ROS Node Browser', component: 'RosNodeBrowser' }] },
-            { type: 'tabset', weight: 25, children: [{ type: 'tab', name: 'ROS Summary', component: 'RosSummary' }] },
-            { type: 'tabset', weight: 25, children: [{ type: 'tab', name: 'ROS Info Panel', component: 'RosSummary' }] } // Assuming RosSummary is the info panel
+            { type: 'tabset', weight: 50, children: [{ type: 'tab', name: 'Rosout Console', component: 'RosoutConsole' }] },
+            { type: 'tabset', weight: 50, children: [{ type: 'tab', name: 'RVIZ', component: 'RVIZ' }] }
           ]
         }
       ]
@@ -147,27 +141,22 @@ export const presets: Record<string, IJsonModel> = {
           type: 'column',
           weight: 50,
           children: [
-            { type: 'tabset', weight: 20, children: [{ type: 'tab', name: 'Telemetry', component: 'Telemetry' }] },
-            { type: 'tabset', weight: 20, children: [{ type: 'tab', name: 'System Status', component: 'SystemStatus' }] },
-            { type: 'tabset', weight: 20, children: [{ type: 'tab', name: 'VESC Status', component: 'VESCStatus' }] },
-            { type: 'tabset', weight: 20, children: [{ type: 'tab', name: 'Thermal Trend', component: 'ThermalTrend' }] },
-            { type: 'tabset', weight: 20, children: [{ type: 'tab', name: 'Mass Spec', component: 'MassSpec' }] }
+            { type: 'tabset', weight: 50, children: [{ type: 'tab', name: 'Vesc Info Readonly', component: 'VescInfoReadonly' }] },
+            { type: 'tabset', weight: 50, children: [{ type: 'tab', name: 'Machine Usage Readonly', component: 'MachineUsageReadonly' }] }
           ]
         },
         {
           type: 'column',
           weight: 50,
           children: [
-            { type: 'tabset', weight: 25, children: [{ type: 'tab', name: 'Atmosphere Panel', component: 'AtmospherePanel' }] },
-            { type: 'tabset', weight: 25, children: [{ type: 'tab', name: 'Drill System Panel', component: 'DrillSystemPanel' }] },
-            { type: 'tabset', weight: 25, children: [{ type: 'tab', name: 'Hazard Detect Panel', component: 'HazardDetectPanel' }] },
-            { type: 'tabset', weight: 25, children: [{ type: 'tab', name: 'Log Console', component: 'LogConsole' }] }
+            { type: 'tabset', weight: 50, children: [{ type: 'tab', name: 'Rosout Console', component: 'RosoutConsole' }] },
+            { type: 'tabset', weight: 50, children: [{ type: 'tab', name: 'Camera Feed', component: 'CameraFeed' }] }
           ]
         }
       ]
     }
   },
-  '7': {
+  'Post-Landing': {
     global: { tabEnableClose: true },
     borders: [],
     layout: {
@@ -175,14 +164,25 @@ export const presets: Record<string, IJsonModel> = {
       weight: 100,
       children: [
         {
-          type: 'tabset',
-          weight: 100,
-          children: [{ type: 'tab', name: 'Empty Widget', component: 'EmptyWidget' }]
+          type: 'column',
+          weight: 50,
+          children: [
+            { type: 'tabset', weight: 50, children: [{ type: 'tab', name: 'Camera Feed', component: 'CameraFeed' }] },
+            { type: 'tabset', weight: 50, children: [{ type: 'tab', name: 'Science Widget', component: 'ScienceWidget' }] }
+          ]
+        },
+        {
+          type: 'column',
+          weight: 50,
+          children: [
+            { type: 'tabset', weight: 50, children: [{ type: 'tab', name: 'Rosout Console', component: 'RosoutConsole' }] },
+            { type: 'tabset', weight: 50, children: [{ type: 'tab', name: 'Vesc Info Readonly', component: 'VescInfoReadonly' }] }
+          ]
         }
       ]
     }
   },
-  '8': {
+  'Excavation': {
     global: { tabEnableClose: true },
     borders: [],
     layout: {
@@ -190,14 +190,25 @@ export const presets: Record<string, IJsonModel> = {
       weight: 100,
       children: [
         {
-          type: 'tabset',
-          weight: 100,
-          children: [{ type: 'tab', name: 'Empty Widget', component: 'EmptyWidget' }]
+          type: 'column',
+          weight: 50,
+          children: [
+            { type: 'tabset', weight: 50, children: [{ type: 'tab', name: 'Camera Feed', component: 'CameraFeed' }] },
+            { type: 'tabset', weight: 50, children: [{ type: 'tab', name: 'Science Widget', component: 'ScienceWidget' }] }
+          ]
+        },
+        {
+          type: 'column',
+          weight: 50,
+          children: [
+            { type: 'tabset', weight: 50, children: [{ type: 'tab', name: 'Point Cloud Map', component: 'PointCloudMap' }] },
+            { type: 'tabset', weight: 50, children: [{ type: 'tab', name: 'Machine Usage Readonly', component: 'MachineUsageReadonly' }] }
+          ]
         }
       ]
     }
   },
-  '9': {
+  'Space Resources': {
     global: { tabEnableClose: true },
     borders: [],
     layout: {
@@ -205,14 +216,25 @@ export const presets: Record<string, IJsonModel> = {
       weight: 100,
       children: [
         {
-          type: 'tabset',
-          weight: 100,
-          children: [{ type: 'tab', name: 'Empty Widget', component: 'EmptyWidget' }]
+          type: 'column',
+          weight: 50,
+          children: [
+            { type: 'tabset', weight: 50, children: [{ type: 'tab', name: 'Camera Feed', component: 'CameraFeed' }] },
+            { type: 'tabset', weight: 50, children: [{ type: 'tab', name: 'Science Widget', component: 'ScienceWidget' }] }
+          ]
+        },
+        {
+          type: 'column',
+          weight: 50,
+          children: [
+            { type: 'tabset', weight: 50, children: [{ type: 'tab', name: 'Rosout Console', component: 'RosoutConsole' }] },
+            { type: 'tabset', weight: 50, children: [{ type: 'tab', name: 'Vesc Info Readonly', component: 'VescInfoReadonly' }] }
+          ]
         }
       ]
     }
   },
-  '10': {
+  'Construction': {
     global: { tabEnableClose: true },
     borders: [],
     layout: {
@@ -220,9 +242,20 @@ export const presets: Record<string, IJsonModel> = {
       weight: 100,
       children: [
         {
-          type: 'tabset',
-          weight: 100,
-          children: [{ type: 'tab', name: 'Empty Widget', component: 'EmptyWidget' }]
+          type: 'column',
+          weight: 50,
+          children: [
+            { type: 'tabset', weight: 50, children: [{ type: 'tab', name: 'Camera Feed', component: 'CameraFeed' }] },
+            { type: 'tabset', weight: 50, children: [{ type: 'tab', name: 'Point Cloud Map', component: 'PointCloudMap' }] }
+          ]
+        },
+        {
+          type: 'column',
+          weight: 50,
+          children: [
+            { type: 'tabset', weight: 50, children: [{ type: 'tab', name: 'Science Widget', component: 'ScienceWidget' }] },
+            { type: 'tabset', weight: 50, children: [{ type: 'tab', name: 'Machine Usage Readonly', component: 'MachineUsageReadonly' }] }
+          ]
         }
       ]
     }
