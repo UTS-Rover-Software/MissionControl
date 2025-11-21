@@ -5,21 +5,23 @@ description = "UTS RoverSoc Mission Control Backend"
 requires-python = ">=3.9"
 dependencies = [
     "fastapi>=0.104.0",
+    "sqlalchemy>=2.0.44",
     "uvicorn>=0.24.0",
     "websockets>=15.0.1",
+    "aiosqlite>=0.19.0",
+    "greenlet>=3.0.0",
 ]
 
 
 [project.scripts]
 dev = "app.cli:dev"
 start = "app.cli:start"
+lint = "app.cli:lint"
+test = "app.cli:test"
 
 [build-system]
 requires = ["setuptools>=68.0"]
 build-backend = "setuptools.build_meta"
 
 [dependency-groups]
-dev = [
-    "pytest>=8.4.2",
-    "ruff>=0.14.4",
-]
+dev = ["pytest>=8.4.2", "pytest-asyncio>=0.23.0", "ruff>=0.14.4"]

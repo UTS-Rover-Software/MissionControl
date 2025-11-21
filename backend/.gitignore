@@ -15,3 +15,6 @@ build/
 .vscode/
 .idea/
 *.swp
+
+mission_control.db
+test_database.db

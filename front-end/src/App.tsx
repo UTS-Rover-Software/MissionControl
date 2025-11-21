@@ -5,61 +5,29 @@ import "./App.css";
 import Navbar from './components/Navbar';
 import { presets } from './presets';
 
-// Import all widgets
+// Import mission control widgets
+import Nav2TargetQueue from './components/widgets/Nav2TargetQueue';
+import BoundingBoxForWidgets from './components/widgets/BoundingBoxForWidgets';
 import CameraFeed from './components/widgets/CameraFeed';
-import ObsbotsCameraControl from './components/widgets/ObsbotsCameraControl';
-import ImageQualityControl from './components/widgets/ImageQualityControl';
 import PointCloudMap from './components/widgets/PointCloudMap';
-import MiniMap from './components/widgets/MiniMap';
-import TasksWidget from './components/widgets/TasksWidget';
-import TaskGraph from './components/widgets/TaskGraph';
-import RobotArm from './components/widgets/RobotArm';
-import Telemetry from './components/widgets/Telemetry';
-import SystemStatus from './components/widgets/SystemStatus';
-import VESCStatus from './components/widgets/VESCStatus';
-import ThermalTrend from './components/widgets/ThermalTrend';
-import MassSpec from './components/widgets/MassSpec';
-import AtmospherePanel from './components/widgets/AtmospherePanel';
-import DrillSystemPanel from './components/widgets/DrillSystemPanel';
-import HazardDetectPanel from './components/widgets/HazardDetectPanel';
-import NetworkPanel from './components/widgets/NetworkPanel';
-import NearbyNetworks from './components/widgets/NearbyNetworks';
-import LinkSpeedPanel from './components/widgets/LinkSpeedPanel';
-import LightControl from './components/widgets/LightControl';
-import LogConsole from './components/widgets/LogConsole';
-import RosNodeBrowser from './components/widgets/RosNodeBrowser';
-import RosSummary from './components/widgets/RosSummary';
-import RFIDScanner from './components/widgets/RFIDScanner';
-import RFIDHistory from './components/widgets/RFIDHistory';
-import EmptyWidget from './components/widgets/EmptyWidget';
+import RosoutConsole from './components/widgets/RosoutConsole';
+import VescInfoReadonly from './components/widgets/VescInfoReadonly';
+import MachineUsageReadonly from './components/widgets/MachineUsageReadonly';
+import RVIZ from './components/widgets/RVIZ';
+import AerialMapSlam from './components/widgets/AerialMapSlam';
+import ScienceWidget from './components/widgets/ScienceWidget';
 
 const componentMap: Record<string, React.ComponentType> = {
+  Nav2TargetQueue,
+  BoundingBoxForWidgets,
   CameraFeed,
-  ObsbotsCameraControl,
-  ImageQualityControl,
   PointCloudMap,
-  MiniMap,
-  TasksWidget,
-  TaskGraph,
-  RobotArm,
-  Telemetry,
-  SystemStatus,
-  VESCStatus,
-  ThermalTrend,
-  MassSpec,
-  AtmospherePanel,
-  DrillSystemPanel,
-  HazardDetectPanel,
-  NetworkPanel,
-  NearbyNetworks,
-  LinkSpeedPanel,
-  LightControl,
-  LogConsole,
-  RosNodeBrowser,
-  RosSummary,
-  RFIDScanner,
-  RFIDHistory,
-  EmptyWidget
+  RosoutConsole,
+  VescInfoReadonly,
+  MachineUsageReadonly,
+  RVIZ,
+  AerialMapSlam,
+  ScienceWidget
 };
 
 function App() {

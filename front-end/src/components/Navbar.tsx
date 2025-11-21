@@ -19,55 +19,30 @@ interface NavbarProps {
   onResetLayout: () => void;
 }
 
-const presetIcons = [
-  { name: 'Navigation', icon: Compass },
-  { name: 'Multi-Camera', icon: Camera },
-  { name: 'RFID + Image Quality', icon: Scan },
-  { name: 'Network + Camera + Light Control', icon: Network },
-  { name: 'Mapping + ROS Console', icon: Map },
-  { name: 'Diagnostics', icon: Activity },
-];
-
 const presets = [
   'Navigation',
   'Multi-Camera',
-  'RFID + Image Quality',
-  'Network + Camera + Light Control',
+  'Science',
+  'Autonomous',
   'Mapping + ROS Console',
   'Diagnostics',
-  '7',
-  '8',
-  '9',
-  '10'
+  'Post-Landing',
+  'Excavation',
+  'Space Resources',
+  'Construction'
 ];
 
 const widgets = [
+  'Nav2TargetQueue',
+  'BoundingBoxForWidgets',
   'CameraFeed',
-  'ObsbotsCameraControl',
-  'ImageQualityControl',
   'PointCloudMap',
-  'MiniMap',
-  'TasksWidget',
-  'TaskGraph',
-  'RobotArm',
-  'Telemetry',
-  'SystemStatus',
-  'VESCStatus',
-  'ThermalTrend',
-  'MassSpec',
-  'AtmospherePanel',
-  'DrillSystemPanel',
-  'HazardDetectPanel',
-  'NetworkPanel',
-  'NearbyNetworks',
-  'LinkSpeedPanel',
-  'LightControl',
-  'LogConsole',
-  'RosNodeBrowser',
-  'RosSummary',
-  'RFIDScanner',
-  'RFIDHistory',
-  'EmptyWidget'
+  'RosoutConsole',
+  'VescInfoReadonly',
+  'MachineUsageReadonly',
+  'RVIZ',
+  'AerialMapSlam',
+  'ScienceWidget'
 ];
 
 const Navbar: React.FC<NavbarProps> = ({ currentPreset, onPresetChange, onAddWidget, onSaveLayout, onResetLayout }) => {
@@ -91,30 +66,16 @@ const Navbar: React.FC<NavbarProps> = ({ currentPreset, onPresetChange, onAddWid
       <div className="flex items-center space-x-3">
         <img src="/rover_logo_white.svg" alt="Rover Logo" className="h-8 w-auto" />
         <div className="flex space-x-1">
-          {presets.slice(0, 6).map((preset, index) => {
-            const IconComponent = presetIcons[index].icon;
-            return (
-              <Button
-                key={preset}
-                variant={currentPreset === preset ? 'default' : 'ghost'}
-                size="sm"
-                onClick={() => onPresetChange(preset)}
-                className="h-7 w-7 p-0"
-                title={preset}
-              >
-                <IconComponent className="h-5 w-5" />
-              </Button>
-            );
-          })}
-          {presets.slice(6).map((preset) => (
+          {presets.map((preset, index) => (
             <Button
               key={preset}
               variant={currentPreset === preset ? 'default' : 'ghost'}
               size="sm"
               onClick={() => onPresetChange(preset)}
               className="h-7 w-7 p-0 text-xs"
+              title={preset}
             >
-              {preset}
+              {index + 1}
             </Button>
           ))}
         </div>
