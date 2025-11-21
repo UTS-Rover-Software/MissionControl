@@ -1,12 +1,6 @@
 import React from 'react';
 import { Button } from './ui/button';
 import {
-  Compass,
-  Camera,
-  Scan,
-  Network,
-  Map,
-  Activity,
   RotateCcw,
   Save
 } from 'lucide-react';

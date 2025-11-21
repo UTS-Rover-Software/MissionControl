@@ -1,0 +1,14 @@
+name: Main CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  backend-test:
+    uses: ./.github/workflows/backend.yml
+  frontend-test:
+    uses: ./.github/workflows/frontend.yml

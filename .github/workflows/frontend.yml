@@ -1,0 +1,35 @@
+name: Frontend CI
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: front-end/package-lock.json
+      - name: Install dependencies
+        working-directory: front-end
+        run: npm ci
+      - name: Lint
+        working-directory: front-end
+        run: npm run lint
+      - name: Run tests
+        working-directory: front-end
+        run: npm test -- --coverage --watchAll=false
+      - name: Upload coverage
+        uses: codecov/codecov-action@v3
+        with:
+          file: ./front-end/coverage/cobertura-coverage.xml
+          flags: frontend
+          name: frontend-coverage
