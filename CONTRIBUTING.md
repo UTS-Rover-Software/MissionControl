@@ -56,7 +56,7 @@ def test_get_status():
 
 ### 1. Create Component
 
-- Add `.tsx` file in `front-end/src/components/widgets/`
+- Add `.tsx` file in `frontend/src/components/widgets/`
 - Use React hooks for state/WebSocket
 - Follow existing patterns
 
@@ -87,10 +87,12 @@ def test_get_status():
 ## Red-Green-Refactor in This Codebase
 
 1. **Red**: Write failing test first
+
    - Backend: `def test_feature(): assert False`
    - Frontend: `test('feature', () => { expect(false).toBe(true); });`
 
 2. **Green**: Minimal code to pass test
+
    - Implement basic functionality
    - No optimization yet
 
@@ -151,4 +153,3 @@ def test_get_status():
 - [ ] Code follows existing patterns and conventions
 - [ ] Pull request description includes all required sections
 ```
-
