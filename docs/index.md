@@ -23,7 +23,7 @@ features:
     link: /widgets/
   - title: Frontend
     details: Architecture, components, styling, and tilling system.
-    link: /frontend/architecture
+    link: /frontend/
   - title: Backend
     details: Routers, services, database, and CLI tools.
     link: /backend/routers
@@ -46,7 +46,7 @@ Mission Control is the comprehensive documentation site for the UTS Rover Team's
 
 ## Getting Started
 
-If you're new to the project, start with the [Setup](/setup/frontend) section to get your environment ready. Then, check out the [Manual](/manual) for usage instructions.
+If you're new to the project, start with the [Setup](/general/setup) section to get your environment ready. Then, check out the [Manual](/general/manual) for usage instructions.
 
-For developers, explore the [Frontend](/frontend/architecture) and [Backend](/backend/routers) sections to understand the codebase.
+For developers, explore the [Frontend](/frontend/) and [Backend](/backend/routers) sections to understand the codebase.
 
