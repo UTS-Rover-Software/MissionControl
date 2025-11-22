@@ -1,6 +1,6 @@
-# UTS RoverSoc Mission Control
+# UTS Rover Team Mission Control
 
-Mission Control is a web-based interface for commanding, controlling, and monitoring the ROCK E rover during UTS Rover Challenge tasks. It provides real-time telemetry, SLAM visualization, camera feeds, and system health monitoring.
+Mission Control is a web-based interface for commanding, controlling, and monitoring the ROCK-E Rover during ARCh tasks. It provides telemetry, SLAM visualization, camera feeds, and system health monitoring.
 
 ## Features
 
@@ -20,6 +20,7 @@ Mission Control is a web-based interface for commanding, controlling, and monito
 ## Getting Started
 
 ### Prerequisites
+
 - Python 3.12+
 - Node.js 18+
 - uv (Python package manager)
@@ -27,6 +28,7 @@ Mission Control is a web-based interface for commanding, controlling, and monito
 ### Installation
 
 1. **Backend**:
+
    ```bash
    cd backend
    uv sync --dev
@@ -35,7 +37,7 @@ Mission Control is a web-based interface for commanding, controlling, and monito
 
 2. **Frontend**:
    ```bash
-   cd front-end
+   cd frontend
    npm install
    npm run dev
    ```
@@ -55,19 +57,18 @@ Mission Control is a web-based interface for commanding, controlling, and monito
 │   │   ├── routers/  # API endpoints
 │   │   └── tests/    # Backend tests
 │   └── pyproject.toml
-├── front-end/        # React frontend
+├── frontend/        # React frontend
 │   ├── src/
 │   │   ├── components/
 │   │   └── presets.ts
 │   └── package.json
-├── .gitlab-ci.yml    # CI/CD pipeline
 └── CONTRIBUTING.md   # Development guide
 ```
 
 ## Testing
 
 - **Backend**: `cd backend && uv run pytest`
-- **Frontend**: `cd front-end && npm test`
+- **Frontend**: `cd frontend && npm test`
 
 ## Contributing
 
@@ -75,4 +76,4 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed development guidelines, incl
 
 ## License
 
-This project is part of UTS RoverSoc activities.
+This project is part of UTS Rover Team activities. Licensing and usage restrictions are governed by the UTS Rover Team’s policies.

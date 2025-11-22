@@ -4,7 +4,7 @@
 
 #### Based
 
-*If you don't have **nix** or **direnv** setup checkout **cringe** section*
+_If you don't have **nix** or **direnv** setup checkout **cringe** section_
 
 ```sh
 direnv allow
@@ -18,7 +18,7 @@ Install the following dependencies on your machine:
 
 - python 3.13
 - uv
-*NOTE: Check the `flake.nix` in case we forget to update docs*
+  _NOTE: Check the `flake.nix` in case we forget to update docs_
 
 Install python dependencies:
 
@@ -39,7 +39,7 @@ For Swagger Docs go to `http://localhost:8000/docs` endpoint on your browser
 
 ## Project Structure
 
-```.
+`````.
 ├── app/
 ├── flake.lock
 ├── flake.nix
@@ -50,3 +50,4 @@ For Swagger Docs go to `http://localhost:8000/docs` endpoint on your browser
 ├── tests/
 └── uv.lock````
 
+`````

@@ -17,7 +17,7 @@
           ];
 
           shellHook = ''
-          echo "Welcome to RoverSoc Mission Control"
+          echo "Welcome to UTS Rover Team Mission Control"
           '';
         };
       });
