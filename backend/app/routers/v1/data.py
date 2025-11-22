@@ -1,9 +1,8 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends
 from pydantic import BaseModel
 from sqlalchemy.ext.asyncio import AsyncSession
 from typing import List, Optional
 from ...database import get_db
-from ...services.database_service import DatabaseService
 
 router = APIRouter(
     prefix="/api/v1",
@@ -40,18 +39,7 @@ class CommandLogResponse(BaseModel):
     response_model=List[MissionResponse],
 )
 async def get_missions_list(db: AsyncSession = Depends(get_db)):
-    service = DatabaseService(db)
-    missions = await service.list_missions()
-    return [
-        MissionResponse(
-            id=m.id,
-            name=m.name,
-            start_time=m.start_time.isoformat(),
-            end_time=m.end_time.isoformat() if m.end_time else None,
-            status=m.status,
-        )
-        for m in missions
-    ]
+    raise NotImplementedError("Not implemented yet")
 
 
 @router.post(
@@ -60,20 +48,7 @@ async def get_missions_list(db: AsyncSession = Depends(get_db)):
     response_model=MissionResponse,
 )
 async def start_mission(name: str = "Mission", db: AsyncSession = Depends(get_db)):
-    service = DatabaseService(db)
-    # Check if there's an active mission
-    active = await service.get_active_mission()
-    if active:
-        raise HTTPException(status_code=400, detail="Active mission already exists")
-
-    mission = await service.create_mission(name)
-    return MissionResponse(
-        id=mission.id,
-        name=mission.name,
-        start_time=mission.start_time.isoformat(),
-        end_time=None,
-        status=mission.status,
-    )
+    raise NotImplementedError("Not implemented yet")
 
 
 @router.post(
@@ -81,13 +56,7 @@ async def start_mission(name: str = "Mission", db: AsyncSession = Depends(get_db
     summary="Stop current mission logging",
 )
 async def stop_mission(db: AsyncSession = Depends(get_db)):
-    service = DatabaseService(db)
-    active = await service.get_active_mission()
-    if not active:
-        raise HTTPException(status_code=400, detail="No active mission")
-
-    await service.end_mission(active.id)
-    return {"message": "Mission stopped"}
+    raise NotImplementedError("Not implemented yet")
 
 
 @router.get(
@@ -96,18 +65,7 @@ async def stop_mission(db: AsyncSession = Depends(get_db)):
     response_model=MissionResponse,
 )
 async def get_mission_metadata(mission_id: int, db: AsyncSession = Depends(get_db)):
-    service = DatabaseService(db)
-    mission = await service.get_mission(mission_id)
-    if not mission:
-        raise HTTPException(status_code=404, detail="Mission not found")
-
-    return MissionResponse(
-        id=mission.id,
-        name=mission.name,
-        start_time=mission.start_time.isoformat(),
-        end_time=mission.end_time.isoformat() if mission.end_time else None,
-        status=mission.status,
-    )
+    raise NotImplementedError("Not implemented yet")
 
 
 @router.get(
@@ -121,17 +79,7 @@ async def get_mission_telemetry(
     limit: int = 100,
     db: AsyncSession = Depends(get_db),
 ):
-    service = DatabaseService(db)
-    logs = await service.get_telemetry_logs(mission_id, topic, limit)
-    return [
-        TelemetryLogResponse(
-            id=log.id,
-            timestamp=log.timestamp.isoformat(),
-            topic=log.topic,
-            data=log.data,
-        )
-        for log in logs
-    ]
+    raise NotImplementedError("Not implemented yet")
 
 
 @router.get(
@@ -142,18 +90,7 @@ async def get_mission_telemetry(
 async def get_mission_commands(
     mission_id: int, limit: int = 50, db: AsyncSession = Depends(get_db)
 ):
-    service = DatabaseService(db)
-    logs = await service.get_command_logs(mission_id, limit)
-    return [
-        CommandLogResponse(
-            id=log.id,
-            timestamp=log.timestamp.isoformat(),
-            command=log.command,
-            parameters=log.parameters,
-            status=log.status,
-        )
-        for log in logs
-    ]
+    raise NotImplementedError("Not implemented yet")
 
 
 # Placeholder endpoints (not implemented yet)
@@ -162,7 +99,7 @@ async def get_mission_commands(
     summary="Download rosbag file",
 )
 async def download_rosbag(mission_id: str):
-    return {"message": "Not implemented"}
+    raise NotImplementedError("Not implemented yet")
 
 
 @router.get(
@@ -170,12 +107,12 @@ async def download_rosbag(mission_id: str):
     summary="Get mission events log",
 )
 async def get_mission_events(mission_id: str):
-    return {"message": "Not implemented"}
+    raise NotImplementedError("Not implemented yet")
 
 
 @router.post("/playback/start", summary="Start mission playback")
 async def start_playback():
-    return {"message": "Not implemented"}
+    raise NotImplementedError("Not implemented yet")
 
 
 @router.post(
@@ -183,7 +120,7 @@ async def start_playback():
     summary="Pause/resume/seek playback",
 )
 async def control_playback():
-    return {"message": "Not implemented"}
+    raise NotImplementedError("Not implemented yet")
 
 
 @router.get(
@@ -191,4 +128,4 @@ async def control_playback():
     summary="Get current playback status",
 )
 async def get_playback_status():
-    return {"message": "Not implemented"}
+    raise NotImplementedError("Not implemented yet")
