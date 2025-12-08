@@ -139,23 +139,25 @@ npm test PointCloudMap
 ## Frontend Visualization
 
 ### Three.js Integration
-- Point material with size 0.2 units
-- Vertex colors for height-based visualization
-- sRGB color space for accurate rendering
-- Dynamic geometry updates
+- Point material with dynamic size (0.2 units × density multiplier)
+- Vertex colors for distance-based visualization
+- Real-time geometry updates for streaming data
+- Automatic material updates on density changes
 
 ### Camera Modes
 
 **3D Mode (Perspective Camera):**
-- Orbiting camera around origin
+- Orbiting camera around origin (0, 0, 0)
 - Yaw: -π to π (horizontal rotation)
-- Pitch: -π/2 to π/2 (vertical rotation)
-- Radius: 10-200 units (zoom)
+- Pitch: -π/2 to π/2 (vertical rotation, clamped)
+- Radius: 10-200 units (zoom distance)
+- Default: yaw=0, pitch=-0.5, radius=50
 
 **2D Mode (Orthographic Camera):**
-- Top-down view along Y-axis
+- Top-down view along Y-axis (bird's eye)
 - Pan in X-Z plane
 - Zoom: 0.5x to 10x
+- Default: centered at origin, zoom=1.0x
 
 ### Mouse Controls
 - **3D Mode:**
@@ -219,29 +221,37 @@ setDensityMultiplier(2.0); // 2x size
 
 ## Future Enhancements
 
-### Data Processing
-- [ ] Noise filtering (statistical outlier removal)
-- [ ] Voxel downsampling for performance
-- [ ] Ground-plane detection and removal
-- [ ] Spatial cropping/clipping
-
-### Visualization
-- [ ] Colorization from RGB camera
-- [ ] Temporal smoothing
-- [ ] Intensity mapping
-- [ ] Multi-sensor point cloud fusion
-
-### Performance
-- [ ] Level-of-detail (LOD) for large point clouds
-- [ ] Octree-based spatial indexing
-- [ ] GPU-based point processing
-- [ ] Streaming chunking for network efficiency
-
-### Features
-- [ ] Point selection/highlighting
-- [ ] Measurement tools
-- [ ] Annotation support
-- [ ] Record/playback functionality
+| Feature | Status | Completed Date | Notes |
+|---------|--------|---------------|-------|
+| **Data Processing** |
+| Noise filtering (statistical outlier removal) | ⬜ Not Started | - | - |
+| Voxel downsampling for performance | ⬜ Not Started | - | - |
+| Ground-plane detection and removal | ⬜ Not Started | - | - |
+| Spatial cropping/clipping | ⬜ Not Started | - | - |
+| **Visualization** |
+| Distance-based colorization | ✅ Complete | Dec 8, 2025 | Blue→Cyan→Green→Yellow→Red gradient, 0.3m-20m range |
+| RGB camera color overlay | ⬜ Not Started | - | - |
+| Temporal smoothing for stream stability | ⬜ Not Started | - | - |
+| Intensity mapping options | ⬜ Not Started | - | - |
+| Multi-sensor point cloud fusion | ⬜ Not Started | - | - |
+| **Performance** |
+| Level-of-detail (LOD) for large point clouds | ⬜ Not Started | - | - |
+| Octree-based spatial indexing | ⬜ Not Started | - | - |
+| GPU-based point processing | ⬜ Not Started | - | - |
+| Streaming chunking for network efficiency | ⬜ Not Started | - | - |
+| **Features** |
+| Real-time mock WebRTC streaming | ✅ Complete | Dec 8, 2025 | 5000 points, ~10 FPS, cone FOV pattern |
+| Interactive compass with camera orientation | ✅ Complete | Dec 8, 2025 | Stationary NESW labels, rotating needle |
+| Keyboard shortcuts for density control | ✅ Complete | Dec 8, 2025 | +/- keys adjust density 0.5x-5.0x |
+| Editable density multiplier input | ✅ Complete | Dec 8, 2025 | Click-to-edit input field with validation |
+| Non-selectable UI controls | ✅ Complete | Dec 8, 2025 | All buttons, labels, and text non-selectable |
+| Point selection/highlighting | ⬜ Not Started | - | - |
+| Measurement tools (distance, area) | ⬜ Not Started | - | - |
+| Annotation support | ⬜ Not Started | - | - |
+| Record/playback functionality | ⬜ Not Started | - | - |
+| Actual WebSocket backend integration | ⬜ Not Started | - | Backend endpoints exist, needs frontend hookup |
+| Obstacles visualization | ⬜ Not Started | - | UI checkbox exists, no data source yet |
+| Path visualization | ⬜ Not Started | - | UI checkbox exists, no data source yet |
 
 ## Technologies Used
 
