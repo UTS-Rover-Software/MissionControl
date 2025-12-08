@@ -17,7 +17,7 @@ class MessageResponse(BaseModel):
     response_model=MessageResponse,
 )
 async def get_latest_telemetry():
-    return {"message": "hello mks"}
+    raise NotImplementedError("Not implemented yet")
 
 
 @router.get(
@@ -26,14 +26,14 @@ async def get_latest_telemetry():
     response_model=MessageResponse,
 )
 async def get_telemetry_health():
-    return {"message": "hello mks"}
+    raise NotImplementedError("Not implemented yet")
 
 
 @router.get(
     "/sensors/vescs", summary="Get latest VESC data", response_model=MessageResponse
 )
 async def get_sensors_vescs():
-    return {"message": "hello mks"}
+    raise NotImplementedError("Not implemented yet")
 
 
 @router.get(
@@ -42,7 +42,7 @@ async def get_sensors_vescs():
     response_model=MessageResponse,
 )
 async def get_sensors_encoders():
-    return {"message": "hello mks"}
+    raise NotImplementedError("Not implemented yet")
 
 
 @router.get(
@@ -51,7 +51,7 @@ async def get_sensors_encoders():
     response_model=MessageResponse,
 )
 async def get_sensors_rgbd():
-    return {"message": "hello mks"}
+    raise NotImplementedError("Not implemented yet")
 
 
 @router.get(
@@ -60,4 +60,4 @@ async def get_sensors_rgbd():
     response_model=MessageResponse,
 )
 async def get_sensors_payload():
-    return {"message": "hello mks"}
+    raise NotImplementedError("Not implemented yet")

@@ -37,7 +37,7 @@ class DatabaseService:
             .values(end_time=datetime.now(timezone.utc), status=status)
         )
         await self.session.commit()
-        return result.rowcount > 0
+        return result.rowcount > 0  # type: ignore[attr-defined]
 
     async def list_missions(self) -> List[Mission]:
         result = await self.session.execute(
@@ -82,7 +82,7 @@ class DatabaseService:
             update(CommandLog).where(CommandLog.id == command_id).values(status=status)
         )
         await self.session.commit()
-        return result.rowcount > 0
+        return result.rowcount > 0  # type: ignore[attr-defined]
 
     async def get_command_logs(
         self, mission_id: int, limit: int = 50
