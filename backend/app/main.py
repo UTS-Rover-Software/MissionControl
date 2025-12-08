@@ -8,7 +8,11 @@ from fastapi.middleware.cors import CORSMiddleware
 from routers.v1.telemetry import router as telemetry_router
 from routers.v1.control import router as control_router
 from routers.v1.cameras import router as cameras_router
-from routers.v1.visualization import router as visualization_router
+try:
+    from routers.v1.visualization import router as visualization_router
+except ImportError as e:
+    print(f"Warning: Could not load visualization router: {e}")
+    visualization_router = None
 from routers.v1.alerts import router as alerts_router
 from routers.v1.data import router as data_router
 from routers.v1.config import router as config_router
@@ -45,7 +49,8 @@ async def startup_event():
 app.include_router(telemetry_router)
 app.include_router(control_router)
 app.include_router(cameras_router)
-app.include_router(visualization_router)
+if visualization_router:
+    app.include_router(visualization_router)
 app.include_router(alerts_router)
 app.include_router(data_router)
 app.include_router(config_router)

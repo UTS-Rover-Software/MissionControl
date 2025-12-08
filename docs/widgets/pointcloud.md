@@ -58,21 +58,34 @@ Features:
   - 2D: Orthographic top-down view with pan/zoom
 - **Data Sources:**
   - Local: Stanford Bunny PLY model for testing
-  - WebRTC: Live streaming via WebSocket
+  - WebRTC: Live streaming simulation with mock data (~10 FPS, 5000 points)
 - **Controls:**
-  - Drag to rotate (3D) or pan (2D)
-  - Scroll to zoom in both modes
-  - Mode switching buttons
-  - Data source toggle with connection status
-- **Height-based Coloring:** Automatic hot pink gradient based on Y-axis
-- **Responsive:** Adapts to flex layout changes
+  - Mouse: Drag to rotate (3D) or pan (2D), scroll to zoom
+  - Keyboard: `+`/`-` keys to adjust point density (0.5x-5.0x)
+  - Editable density input field
+  - Mode switching buttons with visual feedback
+- **Distance-based Coloring:** 
+  - Blue (close, ~30cm) → Cyan → Green → Yellow → Red (far, ~20m)
+  - 70% of gradient dedicated to 0-10m range (most important data)
+  - Real-time color calculation based on distance from camera
+- **Compass Overlay:**
+  - Shows cardinal directions (N, E, S, W)
+  - Rotating needle indicates camera orientation
+  - Non-interactive, always visible
+- **UI Features:**
+  - Non-selectable controls for clean interaction
+  - Semi-transparent bottom panel for visibility
+  - Toggle visibility of obstacles, path, and point cloud density
+- **Responsive:** Adapts to flex layout changes with ResizeObserver
 
-#### Compass (`front-end/src/components/widgets/Compass.tsx`)
-Visual orientation indicator:
-- Cardinal direction labels (N, E, S, W)
-- Heading needle pointing north
-- Heading display in degrees (0-360)
-- Customizable size and styling
+#### Compass (`front-end/src/components/widgets/PointCloudMap.tsx`)
+Integrated compass overlay in point cloud widget:
+- Cardinal direction labels (N, E, S, W) - stationary
+- Rotating needle showing camera yaw angle
+- Red north indicator for quick orientation
+- Custom SVG needle (red north side, blue south side)
+- Non-selectable, non-interactive overlay
+- Updates in real-time with camera rotation
 
 ### Data Format
 
@@ -85,9 +98,15 @@ Point cloud data is transmitted as JSON over WebSocket:
 }
 ```
 
-- **Positions:** Float array, 3 values per point
-- **Colors:** Float array (0-1 range), 3 values per point (optional)
+- **Positions:** Float array, 3 values per point (x, y, z coordinates)
+- **Colors:** Float array (0-1 range), 3 values per point (RGB) - optional for WebRTC mode
 - **Point Count:** Total number of points (positions.length / 3)
+
+**Color Calculation (Real-time):**
+- If colors not provided, calculated based on distance from camera origin
+- Distance range: 0.3m (30cm minimum) to 20m (maximum)
+- Emphasis on 0-10m range (70% of color spectrum) where most data is
+- Gradient: Blue → Cyan → Green → Yellow → Red
 
 ## Testing
 
@@ -140,11 +159,31 @@ npm test PointCloudMap
 
 ### Mouse Controls
 - **3D Mode:**
-  - Drag: Rotate (yaw and pitch)
-  - Scroll: Zoom in/out
+  - Drag: Rotate camera (yaw and pitch)
+  - Scroll: Zoom in/out (adjust camera radius)
 - **2D Mode:**
-  - Drag: Pan view
+  - Drag: Pan view in X-Z plane
   - Scroll: Zoom in/out
+
+### Keyboard Controls
+- **`+` or `=`:** Increase point density by 0.1x (up to 5.0x)
+- **`-` or `_`:** Decrease point density by 0.1x (down to 0.5x)
+- **Enter:** Confirm density input when editing the value field
+
+### UI Controls
+- **Top Bar:**
+  - Point Cloud Map title
+  - Local/WebRTC data source toggle
+  - 3D/2D camera mode toggle
+- **Bottom Panel:**
+  - Obstacles checkbox (UI only, no data yet)
+  - Path checkbox (UI only, no data yet)
+  - Point cloud density checkbox (toggles visibility)
+  - Density adjustment: `-` button, editable input field, `+` button
+  - Refresh button (resets camera to default position)
+- **Compass (Top Right):**
+  - Always visible
+  - Shows camera orientation in real-time
 
 ## Integration with Backend
 
@@ -154,16 +193,28 @@ npm test PointCloudMap
 3. Frontend receives updates and updates visualization in real-time
 4. Automatic reconnection on disconnect
 
+### Mock WebRTC Stream
+When in WebRTC mode (for testing without backend):
+- Generates 5,000 random points in cone pattern (simulates depth camera FOV)
+- Updates at ~10 FPS (100ms intervals) for realistic streaming simulation
+- Points distributed in camera field of view (±36° vertical)
+- Distance-based coloring applied automatically
+- Most points concentrated in 0-10m range
+
 ### Usage Example
 ```typescript
 // Switch to WebRTC mode
 setDataSource('webrtc');
 
 // Component automatically:
-// 1. Connects to WebSocket
-// 2. Receives point cloud updates
-// 3. Updates Three.js scene
-// 4. Displays connection status
+// 1. Starts generating mock point cloud data
+// 2. Updates geometry every 100ms
+// 3. Applies distance-based coloring
+// 4. Shows real-time streaming visualization
+
+// Adjust point density
+setDensityMultiplier(2.0); // 2x size
+// Or use keyboard shortcuts: + and -
 ```
 
 ## Future Enhancements
