@@ -1,4 +1,5 @@
 // Nav2TargetQueue.tsx
+
 "use client"
 
 import React, { useEffect, useMemo, useState } from "react"
@@ -29,12 +30,8 @@ interface Nav2TargetQueueProps {
 }
 
 // ---------------------------------------------------------------------------
-// ENV + URL HELPERS
+// URL HELPER
 // ---------------------------------------------------------------------------
-
-// Vite exposes env via import.meta.env
-const IS_DEV: boolean =
-  typeof import.meta !== "undefined" ? import.meta.env?.DEV ?? false : false
 
 const getDefaultWebsocketUrl = (): string | null => {
   if (typeof window === "undefined") return null
@@ -50,7 +47,7 @@ const getDefaultWebsocketUrl = (): string | null => {
 /**
  * DEMO_QUEUE is ONLY for UI testing.
  * Delete this constant once the real websocket is wired and you no longer want
- * fake data in development.
+ * fake data.
  *
  * Six items here so the list overflows and you can test scrolling.
  */
@@ -69,11 +66,10 @@ const Nav2TargetQueue: React.FC<Nav2TargetQueueProps> = ({
   const [queue, setQueue] = useState<Nav2Target[]>([])
 
   // -------------------------------------------------------------------------
-  // DEV-ONLY SEEDING: prefill the queue in development so UI isn't empty.
-  // Remove this effect entirely when you only want real data from backend.
+  // DEV-ONLY SEEDING: prefill the queue so UI isn't empty.
+  // TODO: Remove this effect once websocket backend is the only data source.
   // -------------------------------------------------------------------------
   useEffect(() => {
-    if (!IS_DEV) return
     setQueue((prev) => (prev.length === 0 ? DEMO_QUEUE : prev))
   }, [])
 
@@ -160,7 +156,7 @@ const Nav2TargetQueue: React.FC<Nav2TargetQueueProps> = ({
           </div>
         </div>
 
-        {/* RIGHT — COUNT BADGE + DEV BUTTONS (DEV-ONLY) */}
+        {/* RIGHT — COUNT BADGE + TEST BUTTONS */}
         <div className="flex items-center gap-[8px]">
           <ListOrdered className="h-[20px] w-[20px] text-[#D2D8E2]" />
           <span className="text-[13px] text-[#D2D8E2]">
@@ -168,35 +164,32 @@ const Nav2TargetQueue: React.FC<Nav2TargetQueueProps> = ({
           </span>
 
           {/* ---------------------------------------------------------------- */}
-          {/* DEV-ONLY CONTROLS: simple buttons to play with the queue.       */}
-          {/* Delete this whole <div> when you only want websocket-driven     */}
-          {/* behaviour in production.                                        */}
+          {/* TEST-ONLY CONTROLS: play with the queue in UI without backend.  */}
+          {/* TODO: Delete this <div> when websocket-driven behaviour is the  */}
+          {/* only source of truth.                                           */}
           {/* ---------------------------------------------------------------- */}
-          {IS_DEV && (
-            <div className="ml-[12px] flex gap-[6px]">
-              <button
-                type="button"
-                className="rounded-[4px] bg-[#4F5865] px-[8px] py-[4px] text-[11px] text-[#F3F6FB] hover:bg-[#5a6471]"
-                onClick={() => setQueue(DEMO_QUEUE)}
-              >
-                Demo queue
-              </button>
-              <button
-                type="button"
-                className="rounded-[4px] bg-[#4F5865] px-[8px] py-[4px] text-[11px] text-[#F3F6FB] hover:bg-[#5a6471]"
-                onClick={() =>
-                  setQueue((prev) => (prev.length ? prev.slice(1) : prev))
-                }
-              >
-                Pop
-              </button>
-            </div>
-          )}
+          <div className="ml-[12px] flex gap-[6px]">
+            <button
+              type="button"
+              className="rounded-[4px] bg-[#4F5865] px-[8px] py-[4px] text-[11px] text-[#F3F6FB] hover:bg-[#5a6471]"
+              onClick={() => setQueue(DEMO_QUEUE)}
+            >
+              Demo queue
+            </button>
+            <button
+              type="button"
+              className="rounded-[4px] bg-[#4F5865] px-[8px] py-[4px] text-[11px] text-[#F3F6FB] hover:bg-[#5a6471]"
+              onClick={() =>
+                setQueue((prev) => (prev.length ? prev.slice(1) : prev))
+              }
+            >
+              Pop
+            </button>
+          </div>
         </div>
       </div>
 
       {/* BODY — SCROLLABLE QUEUE LIST */}
-      {/* overflow-y-auto makes this area scroll when there are many tasks. */}
       <div className="mt-[12px] flex-1 overflow-y-auto px-[16px] pb-[16px]">
         {queueWithIndex.length === 0 ? (
           <div className="flex h-full items-center justify-center rounded-[6px] border-[2px] border-dashed border-[#4F5865] bg-[#525b68]/60 px-[16px] py-[12px] text-center text-[13px] text-[#D2D8E2]">
@@ -257,5 +250,3 @@ const Nav2TargetQueue: React.FC<Nav2TargetQueueProps> = ({
 }
 
 export default Nav2TargetQueue
-
-

@@ -1,4 +1,7 @@
 // RosoutConsole.tsx
+
+"use client"
+
 import React, {
   useEffect,
   useMemo,
@@ -11,7 +14,7 @@ import {
   DropdownMenuTrigger,
   DropdownMenuContent,
   DropdownMenuCheckboxItem,
-} from "@/components/ui/dropdown-menu"
+} from "../ui/dropdown-menu"
 import { jsPDF } from "jspdf"
 
 // xterm
