@@ -17,6 +17,9 @@ import RVIZ from './components/widgets/RVIZ';
 import AerialMapSlam from './components/widgets/AerialMapSlam';
 import ScienceWidget from './components/widgets/ScienceWidget';
 
+// Xterm install
+import "xterm/css/xterm.css"
+
 const componentMap: Record<string, React.ComponentType> = {
   Nav2TargetQueue,
   BoundingBoxForWidgets,
