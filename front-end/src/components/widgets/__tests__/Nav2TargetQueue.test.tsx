@@ -1,17 +1,10 @@
-import { render, screen } from '@testing-library/react';
-import Nav2TargetQueue from '../Nav2TargetQueue';
+import "@testing-library/jest-dom";
+import { render, screen } from "@testing-library/react";
+import Nav2TargetQueue from "../Nav2TargetQueue";
 
-test('basic', () => {
-  expect(true).toBe(true);
-});
-
-test('example green', () => {
-  const mock = jest.fn();
-  mock();
-  expect(mock).toHaveBeenCalled();
-});
-
-test('renders Nav2 Target Queue', () => {
-  render(<Nav2TargetQueue />);
-  expect(screen.getByText('Nav2 Target Queue')).toBeInTheDocument();
+describe("Nav2TargetQueue", () => {
+  it("renders the TARGET QUEUE header", () => {
+    render(<Nav2TargetQueue />);
+    expect(screen.getByText("TARGET QUEUE")).toBeInTheDocument();
+  });
 });

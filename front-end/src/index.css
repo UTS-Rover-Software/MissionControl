@@ -122,3 +122,22 @@
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
   }
 }
+
+
+/* -------- Scrollbar styling for RosoutConsole -------- */
+.rosout-scroll::-webkit-scrollbar {
+  width: 10px;
+}
+
+.rosout-scroll::-webkit-scrollbar-track {
+  background: #606975; /* widget background */
+}
+
+.rosout-scroll::-webkit-scrollbar-thumb {
+  background: rgba(172, 179, 189, 0.6); /* matches border #ACB3BD */
+  border-radius: 10px;
+}
+
+.rosout-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(172, 179, 189, 0.8);
+}
