@@ -30,7 +30,7 @@ const PointCloudMap: React.FC = () => {
   const animationFrameRef = useRef<number | null>(null);
 
   const [cameraMode, setCameraMode] = useState<CameraMode>('3d');
-  const [dataSource, setDataSource] = useState<DataSource>('local');
+  const [dataSource, setDataSource] = useState<DataSource>('webrtc');
   const [showObstacles, setShowObstacles] = useState(false);
   const [showPath, setShowPath] = useState(false);
   const [showDensity, setShowDensity] = useState(true);
@@ -572,62 +572,6 @@ const PointCloudMap: React.FC = () => {
           flexShrink: 0,
         }}
       >
-        {/* Title Box */}
-        <div style={{
-          background: '#fff',
-          color: '#000',
-          padding: '6px 16px',
-          borderRadius: '4px',
-          fontSize: '13px',
-          fontWeight: 600,
-          textTransform: 'uppercase',
-          letterSpacing: '0.5px',
-          userSelect: 'none',
-          WebkitUserSelect: 'none'
-        }}>
-          Point Cloud Map
-        </div>
-
-        {/* Data Source Toggle */}
-        <div style={{ display: 'flex', gap: '4px' }}>
-          <button
-            onClick={() => setDataSource('local')}
-            style={{
-              background: dataSource === 'local' ? '#6b7280' : '#fff',
-              color: dataSource === 'local' ? '#fff' : '#000',
-              padding: '6px 16px',
-              border: 'none',
-              borderRadius: '4px',
-              fontSize: '13px',
-              fontWeight: 600,
-              cursor: 'pointer',
-              transition: 'all 0.2s',
-              userSelect: 'none',
-              WebkitUserSelect: 'none'
-            }}
-          >
-            Local
-          </button>
-          <button
-            onClick={() => setDataSource('webrtc')}
-            style={{
-              background: dataSource === 'webrtc' ? '#6b7280' : '#fff',
-              color: dataSource === 'webrtc' ? '#fff' : '#000',
-              padding: '6px 16px',
-              border: 'none',
-              borderRadius: '4px',
-              fontSize: '13px',
-              fontWeight: 600,
-              cursor: 'pointer',
-              transition: 'all 0.2s',
-              userSelect: 'none',
-              WebkitUserSelect: 'none'
-            }}
-          >
-            WebRTC
-          </button>
-        </div>
-
         {/* Camera Mode Toggle */}
         <div style={{ display: 'flex', gap: '4px' }}>
           <button
@@ -772,7 +716,9 @@ const PointCloudMap: React.FC = () => {
             }}
             disabled={!showDensity}
             style={{
-              width: '70px',
+              width: '60px',
+              minWidth: '60px',
+              maxWidth: '60px',
               padding: '4px 8px',
               fontSize: '13px',
               fontWeight: '500',
@@ -783,6 +729,7 @@ const PointCloudMap: React.FC = () => {
               textAlign: 'center',
               outline: 'none',
               transition: 'all 0.2s',
+              boxSizing: 'border-box',
             }}
           />
           <Button
